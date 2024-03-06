@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/alexandrepasc/go-ginkgo-poc/tests/meowfacts/models"
+	"github.com/alexandrepasc/go-ginkgo-poc/tests/meowfacts/types"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
@@ -26,7 +26,7 @@ var _ = Describe("Meowfacts", func() {
 
 			Expect(resp.StatusCode).To(Equal(http.StatusOK))
 
-			respBody := models.GetMeowfactsResponse{}
+			respBody := types.GetMeowfactsResponse{}
 			json.NewDecoder(resp.Body).Decode(&respBody)
 
 			Expect(len(respBody.Data)).To(Equal(1))
@@ -54,7 +54,7 @@ var _ = Describe("Meowfacts", func() {
 
 				Expect(resp.StatusCode).To(Equal(http.StatusOK))
 
-				respBody := models.GetMeowfactsResponse{}
+				respBody := types.GetMeowfactsResponse{}
 				json.NewDecoder(resp.Body).Decode(&respBody)
 
 				Expect(len(respBody.Data)).To(Equal(3))
