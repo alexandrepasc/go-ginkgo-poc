@@ -2,11 +2,14 @@ package meowfacts_test
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 
+	"github.com/alexandrepasc/go-ginkgo-poc/tests/meowfacts/data"
 	"github.com/alexandrepasc/go-ginkgo-poc/tests/meowfacts/types"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"github.com/xeipuuv/gojsonschema"
 )
 
 var _ = Describe("Meowfacts", func() {
@@ -32,7 +35,7 @@ var _ = Describe("Meowfacts", func() {
 			Expect(len(respBody.Data)).To(Equal(1))
 		})
 
-		Describe("With parameters", func() {
+		Context("With parameters", func() {
 			It("Count 3", func() {
 				req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
 
@@ -58,6 +61,42 @@ var _ = Describe("Meowfacts", func() {
 				json.NewDecoder(resp.Body).Decode(&respBody)
 
 				Expect(len(respBody.Data)).To(Equal(3))
+			})
+
+			It("ID 1", func() {
+				req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
+
+				Expect(err).To(BeNil())
+
+				req.Header.Add("User-Agent", "PostmanRuntime/7.28.4")
+
+				q := req.URL.Query()
+
+				q.Add("id", "1")
+
+				req.URL.RawQuery = q.Encode()
+
+				client := &http.Client{}
+
+				resp, err := client.Do(req)
+
+				Expect(err).To(BeNil())
+
+				Expect(resp.StatusCode).To(Equal(http.StatusOK))
+
+				e := gojsonschema.NewStringLoader(data.GetMeowfactsId1)
+
+				b, err := io.ReadAll(resp.Body)
+
+				Expect(err).To(BeNil())
+
+				a := gojsonschema.NewBytesLoader(b)
+
+				res, err := gojsonschema.Validate(e, a)
+
+				Expect(err).To(BeNil())
+
+				Expect(res.Valid()).To(BeTrue())
 			})
 		})
 	})
