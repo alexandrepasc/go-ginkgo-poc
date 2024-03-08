@@ -5,8 +5,10 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/alexandrepasc/go-ginkgo-poc/configurations"
 	"github.com/alexandrepasc/go-ginkgo-poc/tests/meowfacts/data"
 	"github.com/alexandrepasc/go-ginkgo-poc/tests/meowfacts/types"
+	"github.com/gavv/httpexpect"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/xeipuuv/gojsonschema"
@@ -101,6 +103,31 @@ var _ = Describe("Meowfacts", func() {
 					Expect(err).To(BeNil())
 	
 					Expect(res.Valid()).To(BeTrue())
+				})
+			})
+
+			When("Lang is", func() {
+				// Test using httpexpect package
+				It("ger-de", func() {
+					e := httpexpect.WithConfig(httpexpect.Config{
+						BaseURL:  configurations.Endpoints.BaseURL,
+						Reporter: httpexpect.NewRequireReporter(GinkgoT()),
+						// Printers: []httpexpect.Printer{
+						// 	httpexpect.NewCurlPrinter(t),
+						// 	httpexpect.NewDebugPrinter(t, true),
+						// },
+					})
+
+					a := e.Builder(func(r *httpexpect.Request) {
+						r.WithQueryObject(map[string]interface{}{"lang": "ger-de", "id": "1"})
+						r.WithHeaders(map[string]string{"User-Agent": "PostmanRuntime/7.28.4"})
+					})
+
+					resp := a.GET("/").Expect()
+
+					resp.Status(http.StatusOK).
+						JSON().Object().
+						Schema(data.GetMeowfactsLangGer)
 				})
 			})
 		})
