@@ -19,7 +19,8 @@ var _ = Describe("Meowfacts", func() {
 		It("No parameters", func() {
 			req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
 
-			Expect(err).To(BeNil())
+			// Succeed() simply asserts that a passed-in error is nil
+			Expect(err).To(Succeed())
 
 			req.Header.Add("User-Agent", "PostmanRuntime/7.28.4")
 
@@ -27,7 +28,7 @@ var _ = Describe("Meowfacts", func() {
 
 			resp, err := client.Do(req)
 
-			Expect(err).To(BeNil())
+			Expect(err).To(Succeed())
 
 			Expect(resp.StatusCode).To(Equal(http.StatusOK))
 
@@ -42,7 +43,7 @@ var _ = Describe("Meowfacts", func() {
 				It("3", func() {
 					req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
 	
-					Expect(err).To(BeNil())
+					Expect(err).To(Succeed())
 	
 					req.Header.Add("User-Agent", "PostmanRuntime/7.28.4")
 	
@@ -56,7 +57,7 @@ var _ = Describe("Meowfacts", func() {
 	
 					resp, err := client.Do(req)
 	
-					Expect(err).To(BeNil())
+					Expect(err).To(Succeed())
 	
 					Expect(resp.StatusCode).To(Equal(http.StatusOK))
 	
@@ -86,7 +87,7 @@ var _ = Describe("Meowfacts", func() {
 	
 					resp, err := client.Do(req)
 	
-					Expect(err).To(BeNil())
+					Expect(err).To(Succeed())
 	
 					Expect(resp.StatusCode).To(Equal(http.StatusOK))
 	
@@ -94,13 +95,13 @@ var _ = Describe("Meowfacts", func() {
 	
 					b, err := io.ReadAll(resp.Body)
 	
-					Expect(err).To(BeNil())
+					Expect(err).To(Succeed())
 	
 					a := gojsonschema.NewBytesLoader(b)
 	
 					res, err := gojsonschema.Validate(e, a)
 	
-					Expect(err).To(BeNil())
+					Expect(err).To(Succeed())
 	
 					Expect(res.Valid()).To(BeTrue())
 				})
