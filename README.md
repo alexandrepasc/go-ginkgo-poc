@@ -17,3 +17,21 @@
 `ginkgo bootstrap`
 
 `ginkgo generate`
+
+Recursive
+`ginkgo -r`
+
+Recursive with verbosity
+`ginkgo -v -r`
+
+Recursive with max verbosity
+`ginkgo run -r -vv`
+
+Recursive and only tests with **params** label
+`ginkgo run -r --label-filter="params"`
+
+Recursive and only tests with **noparams** or **id** labels
+`ginkgo run -r --label-filter="noparams||id"`
+
+Recursive and only tests with **params** and **1** labels
+`ginkgo run -r --label-filter="params&&1"`

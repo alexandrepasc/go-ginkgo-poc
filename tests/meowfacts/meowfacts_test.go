@@ -9,14 +9,14 @@ import (
 	"github.com/alexandrepasc/go-ginkgo-poc/tests/meowfacts/data"
 	"github.com/alexandrepasc/go-ginkgo-poc/tests/meowfacts/types"
 	"github.com/gavv/httpexpect"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/xeipuuv/gojsonschema"
 )
 
-var _ = Describe("Meowfacts", func() {
-	Describe("Get meowfacts", func() {
-		It("No parameters", func() {
+var _ = Describe("Meowfacts", Label("mewfacts"), func() {
+	Describe("Get meowfacts", Label("get"), func() {
+		It("No parameters", Label("noparams"), func() {
 			req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
 
 			// Succeed() simply asserts that a passed-in error is nil
@@ -38,7 +38,7 @@ var _ = Describe("Meowfacts", func() {
 			Expect(len(respBody.Data)).To(Equal(1))
 		})
 
-		Context("With parameter", func() {
+		Context("With parameter", Label("params"), func() {
 			When("Count is", func() {
 				It("3", func() {
 					req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
@@ -68,9 +68,9 @@ var _ = Describe("Meowfacts", func() {
 				})
 			})
 			
-			When("ID is", func() {
+			When("ID is", Label("id"), func() {
 				// Test using json schema to validate the response body
-				It("1", func() {
+				It("1", Label("1"), func() {
 					req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
 	
 					Expect(err).To(BeNil())
@@ -107,16 +107,16 @@ var _ = Describe("Meowfacts", func() {
 				})
 			})
 
-			When("Lang is", func() {
+			When("Lang is", Label("lang"), func() {
 				// Test using httpexpect package
-				It("ger-de", func() {
+				It("ger-de", Label("ger", "1"), func() {
 					e := httpexpect.WithConfig(httpexpect.Config{
 						BaseURL:  configurations.Endpoints.BaseURL,
 						Reporter: httpexpect.NewRequireReporter(GinkgoT()),
-						// Printers: []httpexpect.Printer{
-						// 	httpexpect.NewCurlPrinter(t),
-						// 	httpexpect.NewDebugPrinter(t, true),
-						// },
+						Printers: []httpexpect.Printer{
+							httpexpect.NewCurlPrinter(GinkgoT()),
+							httpexpect.NewDebugPrinter(GinkgoT(), true),
+						},
 					})
 
 					a := e.Builder(func(r *httpexpect.Request) {
