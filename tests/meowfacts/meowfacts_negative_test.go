@@ -11,7 +11,7 @@ import (
 var _ = Describe("Meowfacts Negative", Label("meowfacts negative"), func() {
 	It("Post meowfacts", Label("post"), func () {
 		e := httpexpect.WithConfig(httpexpect.Config{
-			BaseURL:  configurations.Endpoints.BaseURL,
+			BaseURL:  configurations.Endpoints.Meowfacts.BaseURL,
 			Reporter: httpexpect.NewRequireReporter(GinkgoT()),
 			Printers: []httpexpect.Printer{
 				httpexpect.NewCurlPrinter(GinkgoT()),

@@ -17,7 +17,7 @@ import (
 var _ = Describe("Meowfacts", Label("mewfacts"), func() {
 	Describe("Get meowfacts", Label("get"), func() {
 		It("No parameters", Label("noparams"), func() {
-			req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
+			req, err := http.NewRequest("GET", configurations.Endpoints.Meowfacts.BaseURL, http.NoBody)
 
 			// Succeed() simply asserts that a passed-in error is nil
 			Expect(err).To(Succeed())
@@ -41,7 +41,7 @@ var _ = Describe("Meowfacts", Label("mewfacts"), func() {
 		Context("With parameter", Label("params"), func() {
 			When("Count is", func() {
 				It("3", func() {
-					req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
+					req, err := http.NewRequest("GET", configurations.Endpoints.Meowfacts.BaseURL, http.NoBody)
 	
 					Expect(err).To(Succeed())
 	
@@ -71,7 +71,7 @@ var _ = Describe("Meowfacts", Label("mewfacts"), func() {
 			When("ID is", Label("id"), func() {
 				// Test using json schema to validate the response body
 				It("1", Label("1"), func() {
-					req, err := http.NewRequest("GET", "https://meowfacts.herokuapp.com/", http.NoBody)
+					req, err := http.NewRequest("GET", configurations.Endpoints.Meowfacts.BaseURL, http.NoBody)
 	
 					Expect(err).To(BeNil())
 	
@@ -111,7 +111,7 @@ var _ = Describe("Meowfacts", Label("mewfacts"), func() {
 				// Test using httpexpect package
 				It("ger-de", Label("ger", "1"), func() {
 					e := httpexpect.WithConfig(httpexpect.Config{
-						BaseURL:  configurations.Endpoints.BaseURL,
+						BaseURL:  configurations.Endpoints.Meowfacts.BaseURL,
 						Reporter: httpexpect.NewRequireReporter(GinkgoT()),
 						Printers: []httpexpect.Printer{
 							httpexpect.NewCurlPrinter(GinkgoT()),

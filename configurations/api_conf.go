@@ -1,9 +1,23 @@
 package configurations
 
 var Endpoints = endpoints{
-	BaseURL:  "https://meowfacts.herokuapp.com/",
+	Meowfacts: meowfacts{
+		BaseURL: "https://meowfacts.herokuapp.com/",
+	},
+	Catfacts: catfacts{
+		BaseURL: "https://cat-fact.herokuapp.com/facts",
+	},
 }
 
 type endpoints struct {
-	BaseURL   string
+	Meowfacts meowfacts
+	Catfacts  catfacts
+}
+
+type meowfacts struct {
+	BaseURL string
+}
+
+type catfacts struct {
+	BaseURL string
 }
