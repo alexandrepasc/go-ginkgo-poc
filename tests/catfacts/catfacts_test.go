@@ -2,19 +2,12 @@ package catfacts
 
 import (
 	"net/http"
-	"testing"
 
 	"github.com/alexandrepasc/go-ginkgo-poc/configurations"
 	"github.com/alexandrepasc/go-ginkgo-poc/tests/catfacts/data"
 	"github.com/gavv/httpexpect"
 	. "github.com/onsi/ginkgo/v2"
-	. "github.com/onsi/gomega"
 )
-
-func TestMeowfacts(t *testing.T) {
-	RegisterFailHandler(Fail)
-	RunSpecs(t, "Catfacts Suite")
-}
 
 var _ = Describe("Catfacts", Label("catfacts"), func() {
 	It("Invalid methods", Label("invalid"), func() {
