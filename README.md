@@ -55,12 +55,12 @@ If you want to change, correct, improve the project create an `issue` in the pro
 
 ## Appendix
 ### Links
-[Unit testing in Go with Ginkgo: Part 1](https://medium.com/boldly-going/unit-testing-in-go-with-ginkgo-part-1-ce6ff06eb17f)
-[How to do unit testing of HTTP requests using Ginkgo?](https://stackoverflow.com/questions/45434849/how-to-do-unit-testing-of-http-requests-using-ginkgo)
-[Gomega](https://onsi.github.io/gomega/#ghttp-testing-http-clients)
-[Testing With Ginkgo and Gomega](https://medium.com/@dees3g/testing-with-ginkgo-and-gomega-1f1ecc8407a8)
-[meowfacts](https://github.com/wh-iterabb-it/meowfacts)
-[catfacts](https://alexwohlbruck.github.io/cat-facts/docs/endpoints/facts.html)
+- [Unit testing in Go with Ginkgo: Part 1](https://medium.com/boldly-going/unit-testing-in-go-with-ginkgo-part-1-ce6ff06eb17f)
+- [How to do unit testing of HTTP requests using Ginkgo?](https://stackoverflow.com/questions/45434849/how-to-do-unit-testing-of-http-requests-using-ginkgo)
+- [Gomega](https://onsi.github.io/gomega/#ghttp-testing-http-clients)
+- [Testing With Ginkgo and Gomega](https://medium.com/@dees3g/testing-with-ginkgo-and-gomega-1f1ecc8407a8)
+- [meowfacts](https://github.com/wh-iterabb-it/meowfacts)
+- [catfacts](https://alexwohlbruck.github.io/cat-facts/docs/endpoints/facts.html)
 
 ### Commands
 `go get -u github.com/onsi/ginkgo/ginkgo`
