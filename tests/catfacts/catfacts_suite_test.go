@@ -9,5 +9,5 @@ import (
 
 func TestMeowfacts(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Meowfacts Suite")
+	RunSpecs(t, "Catfacts Suite")
 }
