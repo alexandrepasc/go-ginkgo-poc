@@ -69,32 +69,62 @@ If you want to change, correct, improve the project create an `issue` in the pro
 - [catfacts](https://alexwohlbruck.github.io/cat-facts/docs/endpoints/facts.html)
 
 ### Commands
-`go get -u github.com/onsi/ginkgo/ginkgo`
+- Get *Ginkgo* in the project
+```
+go get -u github.com/onsi/ginkgo/ginkgo
+```
 
-`go get -u github.com/onsi/gomega/`
+- Get *Gomega* in the project
+```
+go get -u github.com/onsi/gomega/
+```
 
-`go get github.com/gavv/httpexpect/v2`
+- Get *Httpexpect* in the project
+```
+go get github.com/gavv/httpexpect/v2
+```
 
-`go install github.com/onsi/ginkgo/ginkgo`
+- Install *Ginkgo*
+```
+go install github.com/onsi/ginkgo/ginkgo
+```
 
-`ginkgo bootstrap`
+- Create a package test suite
+```
+ginkgo bootstrap
+```
 
-`ginkgo generate`
+- Create the testing file for the package
+```
+ginkgo generate
+```
 
-Recursive
-`ginkgo -r`
+- Run *Ginkgo* recursively
+```
+ginkgo -r
+```
 
-Recursive with verbosity
-`ginkgo -v -r`
+- Recursive with verbosity
+```
+ginkgo -v -r
+```
 
-Recursive with max verbosity
-`ginkgo run -r -vv`
+- Recursive with max verbosity
+```
+ginkgo run -r -vv
+```
 
-Recursive and only tests with **params** label
-`ginkgo run -r --label-filter="params"`
+- Recursive and only tests with **params** label
+```
+ginkgo run -r --label-filter="params"
+```
 
-Recursive and only tests with **noparams** or **id** labels
-`ginkgo run -r --label-filter="noparams||id"`
+- Recursive and only tests with **noparams** or **id** labels
+```
+ginkgo run -r --label-filter="noparams||id"
+```
 
 Recursive and only tests with **params** and **1** labels
-`ginkgo run -r --label-filter="params&&1"`
+```
+ginkgo run -r --label-filter="params&&1"
+```
