@@ -50,6 +50,12 @@ One functionality that the package *testing* has but it's very hard to maintain 
 - `ginkgo run -r --label-filter="noparams||id"`
 - `ginkgo run -r --label-filter="params&&1"`
 
+Executing tests with *testing* or *Ginkgo* there are no guarantees of the order that the tests are executed. *Ginkgo* adds the `Ordered` decoration that sets the block to execute the specs sequentially by the order that they are written, the `Ordered` specs may be run in parallel with respect respect to other specs but they will always run sequentially in the same parallel process.
+
+When a spec fails the normal behaviour is to run the next spec, but using an `Ordered`container all the specs are considered not independent so *Ginkgo* will skip all the next specs. This can be override using the decoration `ContinueOnFailure`.
+
+In case we need to a container by itself, with no other parallel specs running, the decoration `Serial` can be used to identify the container.
+
 ## Contribute
 If you want to change, correct, improve the project create an `issue` in the project `Issues` screen with the proposal and the necessary documentation. If the proposal or correction has already the implementation developed link the branch with the change in the `issue`.
 
